@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CropMonitoringSystemApplication {
 
 	public static void main(String[] args) {
+		System.out.println("enawadoooo");
 		SpringApplication.run(CropMonitoringSystemApplication.class, args);
 	}
 
