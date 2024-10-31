@@ -25,4 +25,8 @@ public class Vehicle {
     @Column(name = "remarks")
     private String remarks;
 
+    @ManyToOne
+    @JoinColumn(name="staff_member_id",referencedColumnName = "staff_member_id")
+    private Staff staff;
+
 }

@@ -28,5 +28,21 @@ public class Field {
     @Column(columnDefinition = "LONGTEXT")
     private String fieldImage2;
 
+    @OneToMany(mappedBy = "field",cascade = CascadeType.ALL)
+    private List<Crop> crop;
+
+    @OneToMany(mappedBy = "field",cascade = CascadeType.ALL)
+    private List<Equipment> equipment;
+
+    @ManyToMany
+    @JoinTable(
+            name="field_staff",
+            joinColumns = @JoinColumn(name="field_code"),
+            inverseJoinColumns = @JoinColumn(name = "staff_member_id")
+    )
+    private List<Staff> staff;
+
+    @ManyToMany(mappedBy = "field")
+    private List<MonitoringLog> monitoringLogs;
 }
 

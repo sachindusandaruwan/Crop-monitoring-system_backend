@@ -46,4 +46,15 @@ public class Staff {
     @Column(name = "role")
     private Role role;
 
+    @ManyToMany(mappedBy = "staff")
+    private List<Field> field;
+
+    @ManyToMany(mappedBy = "staff")
+    private List<MonitoringLog> monitoringLog;
+
+    @OneToOne(mappedBy = "staff",optional = true)
+    private Equipment equipment;
+
+    @OneToMany(mappedBy = "staff")
+    private List<Vehicle> vehicle;
 }

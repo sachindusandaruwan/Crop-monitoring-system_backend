@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -25,4 +27,10 @@ public class Crop {
     @Column(name = "crop_season")
     private String cropSeason;
 
+    @ManyToOne
+    @JoinColumn(name="field_code",referencedColumnName = "field_name")
+    private Field field;
+
+    @ManyToMany(mappedBy = "crop")
+    private List<MonitoringLog> monitoringLogList;
 }
