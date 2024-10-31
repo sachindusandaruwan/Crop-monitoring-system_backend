@@ -22,11 +22,7 @@ public class Vehicle {
     private String fuelType;
     @Column(name = "status")
     private String status;
-
-    @ManyToOne
-    @JoinColumn(name = "staff_member_id")
-//    @Column(name = "allocated_staff_members")
-    private Staff allocatedStaffMemberDetails;
     @Column(name = "remarks")
     private String remarks;
+
 }

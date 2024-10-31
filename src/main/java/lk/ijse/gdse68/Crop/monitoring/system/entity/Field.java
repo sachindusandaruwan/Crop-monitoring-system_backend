@@ -23,15 +23,10 @@ public class Field {
     private Point fieldLocation;
     @Column(name = "field_size")
     private double fieldSize;
-    @OneToMany(mappedBy = "field")
-    @Column(name = "crops")
-    private java.util.List<Crop> crops;
-    @ManyToMany
-    @Column(name = "staff")
-    private List<Staff> staff;
-    @Column(name = "image_1", columnDefinition = "LONGTEXT")
-    private String image1;
-    @Column(name = "image_2", columnDefinition = "LONGTEXT")
-    private String image2;
+    @Column(columnDefinition = "LONGTEXT")
+    private String fieldImage1;
+    @Column(columnDefinition = "LONGTEXT")
+    private String fieldImage2;
+
 }
 

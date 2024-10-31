@@ -21,14 +21,6 @@ public class Equipment {
     @Column(name = "availability_status")
     private Status status;
 
-    @ManyToOne
-    @JoinColumn(name = "staff_member_id")
-//    @Column(name = "assigned_staff_details")
-    private Staff assignedStaffDetails;
 
-    @ManyToOne
-    @JoinColumn(name = "field_code")
-//    @Column(name = "assigned_field_details")
-    private Field assignedFieldDetails;
 }
 
