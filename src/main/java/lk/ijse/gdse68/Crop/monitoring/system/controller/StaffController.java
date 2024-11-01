@@ -60,4 +60,23 @@ public class StaffController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @DeleteMapping(value ="/{id}" )
+    public ResponseEntity<Void> deleteStaff(@PathVariable ("id") String id) {
+        try {
+            staffBo.deleteStaff(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+
+        } catch (NotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+//        return noteService.deleteNote(noteId) ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+    }
 }

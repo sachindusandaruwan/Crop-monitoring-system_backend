@@ -15,4 +15,6 @@ public interface StaffBo {
 
 
     void updateStaff(@Valid StaffDto staffDto);
+
+    void deleteStaff(String id);
 }

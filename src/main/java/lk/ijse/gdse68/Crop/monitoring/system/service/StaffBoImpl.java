@@ -68,5 +68,15 @@ public class StaffBoImpl implements StaffBo {
         }
     }
 
+    @Override
+    public void deleteStaff(String id) {
+        Optional<Staff> findById=staffDao.findById(id);
+        if(!findById.isPresent()){
+            throw new NotFoundException("User is not found!!");
+        }else {
+            staffDao.deleteById(id);
+        }
+    }
+
 
 }
