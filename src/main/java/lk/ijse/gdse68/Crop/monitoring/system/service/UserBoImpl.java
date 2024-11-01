@@ -1,6 +1,8 @@
 package lk.ijse.gdse68.Crop.monitoring.system.service;
 
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.UserDao;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.UserErrorResponse;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.UserResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.UserDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.User;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.AlreadyExistsException;
@@ -10,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -35,5 +39,15 @@ public class UserBoImpl implements UserBo {
                 throw new AlreadyExistsException("Email is already exists!!");
             }
         }
+
+    @Override
+    public UserResponse getUserByEmail(String email) {
+        Optional<User> user = userDao.findByEmail(email);
+        if (user.isPresent()) {
+            return mapping.convertUserToUserDTO(user.get());
+        }else {
+            return new UserErrorResponse(0,"User not found");
+        }
+    }
 
 }
