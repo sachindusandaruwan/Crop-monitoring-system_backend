@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,5 +46,10 @@ public class StaffBoImpl implements StaffBo {
         }else {
             return new StaffErrorResponse(404, "Staff not found");
         }
+    }
+
+    @Override
+    public List<StaffDto> getAllStaff() {
+        return mapping.convertStaffListToStaffDTOList(staffDao.findAll());
     }
 }

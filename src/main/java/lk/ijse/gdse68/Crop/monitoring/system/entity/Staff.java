@@ -1,5 +1,6 @@
 package lk.ijse.gdse68.Crop.monitoring.system.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,14 +50,18 @@ public class Staff {
     private Role role;
 
     @ManyToMany(mappedBy = "staff")
+    @JsonIgnore
     private List<Field> field;
 
     @ManyToMany(mappedBy = "staff")
+    @JsonIgnore
     private List<MonitoringLog> monitoringLog;
 
     @OneToOne(mappedBy = "staff",optional = true)
+    @JsonIgnore
     private Equipment equipment;
 
     @OneToMany(mappedBy = "staff")
+    @JsonIgnore
     private List<Vehicle> vehicle;
 }

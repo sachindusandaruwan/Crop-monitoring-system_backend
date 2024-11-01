@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class Mapping {
     @Autowired
@@ -25,5 +27,9 @@ public class Mapping {
 
     public StaffDto convertStaffToStaffDto(Staff staff) {
         return modelMapper.map(staff, StaffDto.class);
+    }
+
+    public List<StaffDto> convertStaffListToStaffDTOList(List<Staff> all) {
+        return modelMapper.map(all, List.class);
     }
 }

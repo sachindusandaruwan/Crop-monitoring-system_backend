@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/staff")
 @RequiredArgsConstructor
@@ -38,5 +40,10 @@ public class StaffController {
         }catch (DataPersistFailException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping(value = "allstaff", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<StaffDto> getAllStaff(){
+        return staffBo.getAllStaff();
     }
 }
