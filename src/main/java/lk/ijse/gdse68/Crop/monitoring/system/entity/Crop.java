@@ -28,7 +28,7 @@ public class Crop {
     private String cropSeason;
 
     @ManyToOne
-    @JoinColumn(name="field_code",referencedColumnName = "field_name")
+    @JoinColumn(name="field_code",referencedColumnName = "field_code")
     private Field field;
 
     @ManyToMany(mappedBy = "crop")
