@@ -1,6 +1,8 @@
 package lk.ijse.gdse68.Crop.monitoring.system.service;
 
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.StaffDao;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffErrorResponse;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.StaffDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Staff;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
@@ -9,6 +11,8 @@ import lk.ijse.gdse68.Crop.monitoring.system.util.Mapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -30,5 +34,16 @@ public class StaffBoImpl implements StaffBo {
             throw new DataPersistFailException("Staff save failed");
         }
 
+    }
+
+    @Override
+    public StaffResponse getStaff(String id) {
+        Optional<Staff> staff = staffDao.findById(id);
+        if (staff.isPresent()){
+            System.out.println(mapping.convertStaffToStaffDto(staff.get()));
+            return mapping.convertStaffToStaffDto(staff.get());
+        }else {
+            return new StaffErrorResponse(404, "Staff not found");
+        }
     }
 }

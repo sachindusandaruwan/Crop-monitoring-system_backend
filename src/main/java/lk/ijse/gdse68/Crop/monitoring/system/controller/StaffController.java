@@ -1,6 +1,7 @@
 package lk.ijse.gdse68.Crop.monitoring.system.controller;
 
 import jakarta.validation.Valid;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.StaffDto;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
 import lk.ijse.gdse68.Crop.monitoring.system.service.StaffBo;
@@ -10,10 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/staff")
@@ -28,6 +26,15 @@ public class StaffController {
             System.out.println("StaffDto: " + staffDto);
             staffBo.saveStaff(staffDto);
             return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (DataPersistFailException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<StaffResponse> getStaff(@PathVariable String id){
+        try {
+            return new ResponseEntity<>(staffBo.getStaff(id), HttpStatus.OK);
         }catch (DataPersistFailException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

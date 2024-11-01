@@ -1,5 +1,6 @@
 package lk.ijse.gdse68.Crop.monitoring.system.util;
 
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.StaffDto;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.UserDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Staff;
@@ -14,10 +15,15 @@ public class Mapping {
     private ModelMapper modelMapper;
 
     public User convertUserDtoToUser(UserDto userDto) {
+
         return modelMapper.map(userDto, User.class);
     }
 
     public Staff convertStaffDtoToStaff(StaffDto staffDto) {
         return modelMapper.map(staffDto, Staff.class);
+    }
+
+    public StaffDto convertStaffToStaffDto(Staff staff) {
+        return modelMapper.map(staff, StaffDto.class);
     }
 }
