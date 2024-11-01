@@ -7,6 +7,7 @@ import lk.ijse.gdse68.Crop.monitoring.system.dto.UserDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.User;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.AlreadyExistsException;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
+import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.util.Mapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,16 @@ public class UserBoImpl implements UserBo {
             return mapping.convertUserToUserDTO(user.get());
         }else {
             return new UserErrorResponse(0,"User not found");
+        }
+    }
+
+    @Override
+    public void updateUser(UserDto userDto) {
+        Optional<User> existsUser = userDao.findByEmail(userDto.getEmail());
+        if (existsUser.isPresent()) {
+            existsUser.get().setPassword(userDto.getPassword());
+        }else {
+            throw new NotFoundException("User not exists");
         }
     }
 
