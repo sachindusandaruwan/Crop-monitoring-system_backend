@@ -4,8 +4,10 @@ import lk.ijse.gdse68.Crop.monitoring.system.Repository.StaffDao;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffErrorResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.StaffDto;
+import lk.ijse.gdse68.Crop.monitoring.system.entity.Gender;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Staff;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
+import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.util.AppUtil;
 import lk.ijse.gdse68.Crop.monitoring.system.util.Mapping;
 import lombok.RequiredArgsConstructor;
@@ -52,4 +54,19 @@ public class StaffBoImpl implements StaffBo {
     public List<StaffDto> getAllStaff() {
         return mapping.convertStaffListToStaffDTOList(staffDao.findAll());
     }
+
+    @Override
+    public void updateStaff(StaffDto staffDto) {
+        Optional<Staff> staff = staffDao.findById(staffDto.getId());
+        if (staff.isPresent()){
+            Staff save = staffDao.save(mapping.convertStaffDtoToStaff(staffDto));
+            if (save == null){
+                throw new DataPersistFailException("Staff update failed");
+            }
+        }else {
+            throw new NotFoundException("Staff not found");
+        }
+    }
+
+
 }

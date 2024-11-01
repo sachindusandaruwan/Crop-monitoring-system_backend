@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.StaffDto;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
+import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.service.StaffBo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class StaffController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StaffResponse> getStaff(@PathVariable String id){
+    public ResponseEntity<StaffResponse> getStaff( @PathVariable String id){
         try {
             return new ResponseEntity<>(staffBo.getStaff(id), HttpStatus.OK);
         }catch (DataPersistFailException e){
@@ -45,5 +46,18 @@ public class StaffController {
     @GetMapping(value = "allstaff", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<StaffDto> getAllStaff(){
         return staffBo.getAllStaff();
+    }
+
+    @PatchMapping
+    public ResponseEntity<?> updateStaff(@Valid @RequestBody StaffDto staffDto){
+        try {
+            staffBo.updateStaff(staffDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (NotFoundException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        catch (DataPersistFailException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

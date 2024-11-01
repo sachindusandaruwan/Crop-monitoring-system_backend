@@ -12,4 +12,7 @@ public interface StaffBo {
     StaffResponse getStaff(String id);
 
     List<StaffDto> getAllStaff();
+
+
+    void updateStaff(@Valid StaffDto staffDto);
 }
