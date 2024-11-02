@@ -50,4 +50,8 @@ public class Mapping {
     public FieldDto convertFieldToFieldDto(Field field) {
         return modelMapper.map(field, FieldDto.class);
     }
+
+    public List<FieldDto> convertFieldListToFieldDtoList(List<Field> all) {
+        return modelMapper.map(all, List.class);
+    }
 }

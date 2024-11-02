@@ -1,6 +1,7 @@
 package lk.ijse.gdse68.Crop.monitoring.system.controller;
 
 import lk.ijse.gdse68.Crop.monitoring.system.dto.FieldDto;
+import lk.ijse.gdse68.Crop.monitoring.system.dto.StaffDto;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.service.FieldBo;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
@@ -44,5 +46,11 @@ public class FieldController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping(value = "allfield", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<FieldDto> getAllField(){
+        return fieldBo.getAllField();
+    }
+
 
 }
