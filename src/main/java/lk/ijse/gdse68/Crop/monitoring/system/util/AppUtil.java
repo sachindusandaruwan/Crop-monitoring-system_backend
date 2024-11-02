@@ -7,4 +7,8 @@ public class AppUtil {
         return "ST-" + UUID.randomUUID();
     }
 
+    public static String createFieldCode(){
+        return "F-" + UUID.randomUUID();
+    }
+
 }

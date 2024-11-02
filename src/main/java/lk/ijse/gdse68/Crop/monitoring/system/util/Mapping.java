@@ -2,8 +2,10 @@ package lk.ijse.gdse68.Crop.monitoring.system.util;
 
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.UserResponse;
+import lk.ijse.gdse68.Crop.monitoring.system.dto.FieldDto;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.StaffDto;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.UserDto;
+import lk.ijse.gdse68.Crop.monitoring.system.entity.Field;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Staff;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.User;
 import org.modelmapper.ModelMapper;
@@ -40,4 +42,7 @@ public class Mapping {
     }
 
 
+    public Field convertFieldDtoToField(FieldDto fieldDto) {
+        return modelMapper.map(fieldDto, Field.class);
+    }
 }

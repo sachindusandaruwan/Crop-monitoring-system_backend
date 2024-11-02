@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -59,8 +61,8 @@ public class StaffDto implements SuperDto, StaffResponse {
 
     @NotBlank
     private String role;
-    // private List<EquipmentDTO> equipment;
-    //private List<FieldDTO> fields;
-    //private List<VehicleDTO> vehicles;
-    //private CropDetailsDTO cropDetails;
+    private String equipmentIds;
+    private List<String> fieldCodes;
+    private List<String> vehicleCodes;
+    private List<String> logCodes;
 }
