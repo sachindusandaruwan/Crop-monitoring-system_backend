@@ -48,15 +48,27 @@ public class StaffController {
         return staffBo.getAllStaff();
     }
 
-    @PatchMapping
-    public ResponseEntity<?> updateStaff(@Valid @RequestBody StaffDto staffDto){
+//    @PatchMapping
+//    public ResponseEntity<?> updateStaff(@Valid @RequestBody StaffDto staffDto){
+//        try {
+//            staffBo.updateStaff(staffDto);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        }catch (NotFoundException e){
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//        catch (DataPersistFailException e){
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
+    @PatchMapping(value ="/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateStaff(@PathVariable String id, @Valid @RequestBody StaffDto staffDto) {
         try {
-            staffBo.updateStaff(staffDto);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }catch (NotFoundException e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        catch (DataPersistFailException e){
+            staffBo.updateStaff(id,staffDto);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (DataPersistFailException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

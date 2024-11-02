@@ -13,8 +13,7 @@ public interface StaffBo {
 
     List<StaffDto> getAllStaff();
 
-
-    void updateStaff(@Valid StaffDto staffDto);
-
     void deleteStaff(String id);
+
+    void updateStaff(String id, StaffDto staffDto);
 }

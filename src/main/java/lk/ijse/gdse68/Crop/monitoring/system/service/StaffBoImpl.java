@@ -55,18 +55,8 @@ public class StaffBoImpl implements StaffBo {
         return mapping.convertStaffListToStaffDTOList(staffDao.findAll());
     }
 
-    @Override
-    public void updateStaff(StaffDto staffDto) {
-        Optional<Staff> staff = staffDao.findById(staffDto.getId());
-        if (staff.isPresent()){
-            Staff save = staffDao.save(mapping.convertStaffDtoToStaff(staffDto));
-            if (save == null){
-                throw new DataPersistFailException("Staff update failed");
-            }
-        }else {
-            throw new NotFoundException("Staff not found");
-        }
-    }
+
+
 
     @Override
     public void deleteStaff(String id) {
@@ -75,6 +65,20 @@ public class StaffBoImpl implements StaffBo {
             throw new NotFoundException("User is not found!!");
         }else {
             staffDao.deleteById(id);
+        }
+    }
+
+    @Override
+    public void updateStaff(String id, StaffDto staffDto) {
+        Optional<Staff> staff = staffDao.findById(id);
+        if (staff.isPresent()){
+            staffDto.setId(id);
+            Staff save = staffDao.save(mapping.convertStaffDtoToStaff(staffDto));
+            if (save == null){
+                throw new DataPersistFailException("Staff update failed");
+            }
+        }else {
+            throw new NotFoundException("Staff not found");
         }
     }
 
