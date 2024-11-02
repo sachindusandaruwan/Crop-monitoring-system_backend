@@ -10,7 +10,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 public class FieldErrorResponse implements FieldResponse, Serializable {
-    private int errorCode;
+
     private String errorMessage;
+    private int errorCode;
 
 }

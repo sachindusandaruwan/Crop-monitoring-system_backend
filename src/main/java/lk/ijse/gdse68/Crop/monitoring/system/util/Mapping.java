@@ -1,5 +1,6 @@
 package lk.ijse.gdse68.Crop.monitoring.system.util;
 
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.FieldResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.UserResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.FieldDto;
@@ -44,5 +45,9 @@ public class Mapping {
 
     public Field convertFieldDtoToField(FieldDto fieldDto) {
         return modelMapper.map(fieldDto, Field.class);
+    }
+
+    public FieldDto convertFieldToFieldDto(Field field) {
+        return modelMapper.map(field, FieldDto.class);
     }
 }
