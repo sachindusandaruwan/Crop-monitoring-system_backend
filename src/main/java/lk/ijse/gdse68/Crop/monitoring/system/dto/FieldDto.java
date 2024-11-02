@@ -29,7 +29,7 @@ public class FieldDto implements SuperDto, FieldResponse {
     private Point fieldLocation;
 
     @Positive
-    @NotBlank
+    @NotNull
     private double fieldSize;
 
     @NotNull
