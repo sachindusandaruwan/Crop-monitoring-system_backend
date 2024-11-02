@@ -6,6 +6,7 @@ import lk.ijse.gdse68.Crop.monitoring.system.customObj.FieldResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.FieldDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Field;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
+import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.util.AppUtil;
 import lk.ijse.gdse68.Crop.monitoring.system.util.Mapping;
 import lombok.RequiredArgsConstructor;
@@ -46,5 +47,15 @@ public class FieldBoImpl implements FieldBo {
     @Override
     public List<FieldDto> getAllField() {
         return mapping.convertFieldListToFieldDtoList(fieldDao.findAll());
+    }
+
+    @Override
+    public void deleteField(String fieldCode) {
+        Optional<Field> field = fieldDao.findById(fieldCode);
+        if (field.isPresent()) {
+            fieldDao.deleteById(fieldCode);
+        }else {
+            throw new NotFoundException("Field not found");
+        }
     }
 }

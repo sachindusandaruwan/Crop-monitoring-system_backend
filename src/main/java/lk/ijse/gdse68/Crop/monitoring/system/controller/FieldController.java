@@ -68,5 +68,21 @@ public class FieldController {
         return fieldBo.getAllField();
     }
 
+    @DeleteMapping("/{fieldCode}")
+    public ResponseEntity<?> deleteField(@PathVariable String fieldCode){
+
+        try {
+            fieldBo.deleteField(fieldCode);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NotFoundException e) {
+
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

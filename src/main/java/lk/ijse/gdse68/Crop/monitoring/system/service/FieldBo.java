@@ -12,4 +12,6 @@ public interface FieldBo {
     FieldResponse getField(String fieldCode);
 
     List<FieldDto> getAllField();
+
+    void deleteField(String fieldCode);
 }
