@@ -14,4 +14,6 @@ public interface FieldBo {
     List<FieldDto> getAllField();
 
     void deleteField(String fieldCode);
+
+    void updateField(FieldDto fieldDTO, List<String> staffIds);
 }

@@ -84,5 +84,42 @@ public class FieldController {
         }
     }
 
+    @PatchMapping( value = "/{fieldCode}",params = "staffIds")
+    public ResponseEntity<?> updateField(
+            @PathVariable("fieldCode") String fieldCode,
+            @RequestParam("fieldName") String fieldName,
+            @RequestParam("fieldLocationX") int fieldLocationX,
+            @RequestParam("fieldSize") double fieldSize,
+            @RequestParam("image1") MultipartFile image1,
+            @RequestParam("image2") MultipartFile image2,
+            @RequestParam("fieldLocationY") int fieldLocationY,
+            @RequestParam("staffIds") List<String> staffIds
+    ) {
+        FieldDto fieldDTO = new FieldDto();
+        fieldDTO.setFieldCode(fieldCode);
+        fieldDTO.setFieldName(fieldName);
+        fieldDTO.setFieldLocation(new Point(fieldLocationX, fieldLocationY));
+        fieldDTO.setFieldSize(fieldSize);
+        fieldDTO.setImage1(AppUtil.toBase64(image1));
+        fieldDTO.setImage2(AppUtil.toBase64(image2));
+
+        try {
+            fieldBo.updateField(fieldDTO,staffIds);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NotFoundException e) {
+
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (DataPersistFailException e) {
+
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        catch (Exception e) {
+
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
 }

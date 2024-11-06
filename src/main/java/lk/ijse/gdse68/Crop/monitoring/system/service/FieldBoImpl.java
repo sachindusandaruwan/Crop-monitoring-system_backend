@@ -1,10 +1,12 @@
 package lk.ijse.gdse68.Crop.monitoring.system.service;
 
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.FieldDao;
+import lk.ijse.gdse68.Crop.monitoring.system.Repository.StaffDao;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.FieldErrorResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.FieldResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.FieldDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Field;
+import lk.ijse.gdse68.Crop.monitoring.system.entity.Staff;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.util.AppUtil;
@@ -13,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +24,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class FieldBoImpl implements FieldBo {
     private final FieldDao fieldDao;
+
+    private final StaffDao staffDao;
 
     private final Mapping mapping;
 
@@ -58,4 +63,26 @@ public class FieldBoImpl implements FieldBo {
             throw new NotFoundException("Field not found");
         }
     }
+
+    @Override
+    public void updateField(FieldDto fieldDTO, List<String> staffIds) {
+        Optional<Field> field = fieldDao.findById(fieldDTO.getFieldCode());
+        if (field.isPresent()) {
+            Field TempField1 = mapping.convertFieldDtoToField(fieldDTO);
+            List<Staff> staff = new ArrayList<>();
+            for (String staffId : staffIds) {
+                Optional<Staff> optional = staffDao.findById(staffId);
+                optional.ifPresent(staff::add);
+            }
+            TempField1.setStaff(staff);
+            Field save = fieldDao.save(TempField1);
+            if (save == null) {
+                throw new DataPersistFailException("Field update failed");
+            }
+        }else {
+            throw new NotFoundException("Field not found");
+        }
+    }
+
+
 }
