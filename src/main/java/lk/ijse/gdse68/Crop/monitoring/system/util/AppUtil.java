@@ -26,4 +26,8 @@ public class AppUtil {
     }
 
 
+    public static String createVehicleCode() {
+
+            return "V-" + UUID.randomUUID();
+    }
 }

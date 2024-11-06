@@ -6,9 +6,11 @@ import lk.ijse.gdse68.Crop.monitoring.system.customObj.UserResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.FieldDto;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.StaffDto;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.UserDto;
+import lk.ijse.gdse68.Crop.monitoring.system.dto.VehicleDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Field;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Staff;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.User;
+import lk.ijse.gdse68.Crop.monitoring.system.entity.Vehicle;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -53,5 +55,8 @@ public class Mapping {
 
     public List<FieldDto> convertFieldListToFieldDtoList(List<Field> all) {
         return modelMapper.map(all, List.class);
+    }
+    public Vehicle convertVehicleDTOToVehicle(VehicleDto vehicleDto){
+        return modelMapper.map(vehicleDto, Vehicle.class);
     }
 }

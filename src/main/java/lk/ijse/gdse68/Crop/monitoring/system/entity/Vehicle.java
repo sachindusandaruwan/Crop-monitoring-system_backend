@@ -21,7 +21,8 @@ public class Vehicle {
     @Column(name = "fuel_type")
     private String fuelType;
     @Column(name = "status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     @Column(name = "remarks")
     private String remarks;
 
