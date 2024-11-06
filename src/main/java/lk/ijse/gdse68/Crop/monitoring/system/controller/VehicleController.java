@@ -62,5 +62,17 @@ public class VehicleController {
         }
     }
 
+    @DeleteMapping("/{vehicleCode}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable String vehicleCode) {
+        try {
+            vehicleBo.deleteVehicle(vehicleCode);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (NotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

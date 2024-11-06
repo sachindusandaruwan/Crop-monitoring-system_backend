@@ -15,4 +15,6 @@ public interface VehicleBo {
 
 
     VehicleResponse getVehicle(String vehicleCode);
+
+    void deleteVehicle(String vehicleCode);
 }

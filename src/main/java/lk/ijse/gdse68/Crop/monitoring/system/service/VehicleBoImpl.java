@@ -59,5 +59,14 @@ public class VehicleBoImpl implements VehicleBo{
         }
     }
 
+    @Override
+    public void deleteVehicle(String vehicleCode) {
+        if (vehicleDao.existsById(vehicleCode)){
+            vehicleDao.deleteById(vehicleCode);
+        }else {
+            throw new DataPersistFailException("vehicle delete failed");
+        }
+    }
+
 
 }
