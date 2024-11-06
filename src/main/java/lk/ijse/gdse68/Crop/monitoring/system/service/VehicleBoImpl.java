@@ -2,6 +2,7 @@ package lk.ijse.gdse68.Crop.monitoring.system.service;
 
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.VehicleDao;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.VehicleErrorResponse;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.VehicleResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.VehicleDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Vehicle;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.AlreadyExistsException;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.yaml.snakeyaml.nodes.NodeId.mapping;
@@ -38,13 +40,10 @@ public class VehicleBoImpl implements VehicleBo{
         }
     }
 
+
+
     @Override
-    public Object getVehicle(String vehicleCode) {
-        Optional<Vehicle> vehicleById = vehicleDao.findById(vehicleCode);
-        if (vehicleById.isPresent()){
-            return mapping.convertVehicleToVehicleDTO(vehicleById.get());
-    }else {
-        return new VehicleErrorResponse(404,"vehicle not found");
-        }
+    public List<VehicleDto> getAllVehicles() {
+        return mapping.convertVehicleListToVehicleDTOList(vehicleDao.findAll());
     }
 }
