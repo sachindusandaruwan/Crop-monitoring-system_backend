@@ -17,4 +17,6 @@ public interface VehicleBo {
     VehicleResponse getVehicle(String vehicleCode);
 
     void deleteVehicle(String vehicleCode);
+
+    void updateVehicle(@Valid VehicleDto vehicleDto, String staffId, String vehicleCode);
 }

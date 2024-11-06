@@ -74,5 +74,18 @@ public class VehicleController {
         }
     }
 
+    @PatchMapping(value ="/{vehicleCode}",params = "staffId",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateVehicle(@Valid @RequestBody VehicleDto vehicleDto, @RequestParam("staffId") String staffId , @PathVariable("vehicleCode") String vehicleCode){
+        try{
+            vehicleBo.updateVehicle(vehicleDto,staffId,vehicleCode);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (NotFoundException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (DataPersistFailException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }

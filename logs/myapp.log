@@ -160,3 +160,6 @@
 2024-11-06 14:09:39 - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-11-06 14:09:39 - Initializing Servlet 'dispatcherServlet'
 2024-11-06 14:09:39 - Completed initialization in 1 ms
+2024-11-06 14:42:06 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-06 14:42:06 - HikariPool-1 - Shutdown initiated...
+2024-11-06 14:42:06 - HikariPool-1 - Shutdown completed.
