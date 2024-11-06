@@ -56,7 +56,12 @@ public class Mapping {
     public List<FieldDto> convertFieldListToFieldDtoList(List<Field> all) {
         return modelMapper.map(all, List.class);
     }
+
     public Vehicle convertVehicleDTOToVehicle(VehicleDto vehicleDto){
         return modelMapper.map(vehicleDto, Vehicle.class);
+    }
+
+    public Object convertVehicleToVehicleDTO(Vehicle vehicle) {
+        return modelMapper.map(vehicle, VehicleDto.class);
     }
 }
