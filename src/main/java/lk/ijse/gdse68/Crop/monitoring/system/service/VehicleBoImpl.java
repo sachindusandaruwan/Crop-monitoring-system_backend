@@ -1,9 +1,11 @@
 package lk.ijse.gdse68.Crop.monitoring.system.service;
 
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.VehicleDao;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.FieldErrorResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.VehicleErrorResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.VehicleResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.VehicleDto;
+import lk.ijse.gdse68.Crop.monitoring.system.entity.Field;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Vehicle;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.AlreadyExistsException;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
@@ -33,7 +35,7 @@ public class VehicleBoImpl implements VehicleBo{
         if (vehicleDao.existsByLicensePlateNumber(vehicleDto.getLicensePlateNumber())){
             throw new AlreadyExistsException("vehicle plate number already used");
         }else {
-              Vehicle save=vehicleDao.save(mapping.convertVehicleDTOToVehicle(vehicleDto));
+              Vehicle save=vehicleDao.save(mapping.convertVehicleDtoToVehicle(vehicleDto));
             if (save == null){
                 throw new DataPersistFailException("vehicle save failed");
             }
@@ -46,4 +48,16 @@ public class VehicleBoImpl implements VehicleBo{
     public List<VehicleDto> getAllVehicles() {
         return mapping.convertVehicleListToVehicleDTOList(vehicleDao.findAll());
     }
+
+    @Override
+    public VehicleResponse getVehicle(String vehicleCode) {
+        Optional<Vehicle> vehicle = vehicleDao.findById(vehicleCode);
+        if (vehicle.isPresent()){
+            return mapping.convertVehicleToVehicleDto(vehicle.get());
+        }else {
+            return new VehicleErrorResponse(404,"vehicle not found");
+        }
+    }
+
+
 }

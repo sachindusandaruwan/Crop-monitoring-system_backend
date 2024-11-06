@@ -3,6 +3,7 @@ package lk.ijse.gdse68.Crop.monitoring.system.util;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.FieldResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.UserResponse;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.VehicleResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.FieldDto;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.StaffDto;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.UserDto;
@@ -57,15 +58,17 @@ public class Mapping {
         return modelMapper.map(all, List.class);
     }
 
-    public Vehicle convertVehicleDTOToVehicle(VehicleDto vehicleDto){
+    public Vehicle convertVehicleDtoToVehicle(VehicleDto vehicleDto){
         return modelMapper.map(vehicleDto, Vehicle.class);
     }
 
-    public Object convertVehicleToVehicleDTO(Vehicle vehicle) {
-        return modelMapper.map(vehicle, VehicleDto.class);
-    }
 
     public List<VehicleDto> convertVehicleListToVehicleDTOList(List<Vehicle> all) {
         return modelMapper.map(all, List.class);
+    }
+
+
+    public VehicleDto convertVehicleToVehicleDto(Vehicle vehicle) {
+        return modelMapper.map(vehicle, VehicleDto.class);
     }
 }

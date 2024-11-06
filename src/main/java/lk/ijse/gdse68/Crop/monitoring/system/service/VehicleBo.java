@@ -12,4 +12,7 @@ public interface VehicleBo {
 
 
     List<VehicleDto> getAllVehicles();
+
+
+    VehicleResponse getVehicle(String vehicleCode);
 }
