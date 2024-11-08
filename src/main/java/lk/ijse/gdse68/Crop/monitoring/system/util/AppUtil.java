@@ -30,4 +30,8 @@ public class AppUtil {
 
             return "V-" + UUID.randomUUID();
     }
+
+    public static String createEquipmentCode(){
+        return "EQ-" + UUID.randomUUID();
+    }
 }

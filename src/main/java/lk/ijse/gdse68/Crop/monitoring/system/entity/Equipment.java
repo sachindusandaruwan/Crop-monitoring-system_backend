@@ -17,8 +17,10 @@ public class Equipment {
     @Column(name = "equipment_name")
     private String name;
     @Column(name = "equipment_type")
+    @Enumerated(EnumType.STRING)
     private EquipmentType equipmentType;
     @Column(name = "availability_status")
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @ManyToOne(optional = true)

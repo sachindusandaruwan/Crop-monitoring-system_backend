@@ -4,14 +4,8 @@ import lk.ijse.gdse68.Crop.monitoring.system.customObj.FieldResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.UserResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.VehicleResponse;
-import lk.ijse.gdse68.Crop.monitoring.system.dto.FieldDto;
-import lk.ijse.gdse68.Crop.monitoring.system.dto.StaffDto;
-import lk.ijse.gdse68.Crop.monitoring.system.dto.UserDto;
-import lk.ijse.gdse68.Crop.monitoring.system.dto.VehicleDto;
-import lk.ijse.gdse68.Crop.monitoring.system.entity.Field;
-import lk.ijse.gdse68.Crop.monitoring.system.entity.Staff;
-import lk.ijse.gdse68.Crop.monitoring.system.entity.User;
-import lk.ijse.gdse68.Crop.monitoring.system.entity.Vehicle;
+import lk.ijse.gdse68.Crop.monitoring.system.dto.*;
+import lk.ijse.gdse68.Crop.monitoring.system.entity.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,6 +16,8 @@ import java.util.List;
 public class Mapping {
     @Autowired
     private ModelMapper modelMapper;
+
+
 
     public User convertUserDtoToUser(UserDto userDto) {
 
@@ -70,5 +66,11 @@ public class Mapping {
 
     public VehicleDto convertVehicleToVehicleDto(Vehicle vehicle) {
         return modelMapper.map(vehicle, VehicleDto.class);
+
+
+    }
+
+    public Equipment convertEquipmentDtoToEquipment(EquipmentDto equipmentDto) {
+        return modelMapper.map(equipmentDto, Equipment.class);
     }
 }
