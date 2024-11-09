@@ -78,4 +78,8 @@ public class Mapping {
     public List<EquipmentDto> convertEquipmentListToEquipmentDtoList(List<Equipment> all) {
         return modelMapper.map(all, List.class);
     }
+
+    public Crop convertCropDtoToCrop(CropDto cropDto) {
+        return modelMapper.map(cropDto, Crop.class);
+    }
 }
