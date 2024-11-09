@@ -1,11 +1,16 @@
 package lk.ijse.gdse68.Crop.monitoring.system.service;
 
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.EquipmentDao;
+import lk.ijse.gdse68.Crop.monitoring.system.Repository.FieldDao;
+import lk.ijse.gdse68.Crop.monitoring.system.Repository.StaffDao;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.EquipmentErrorResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.EquipmentResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.EquipmentDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Equipment;
+import lk.ijse.gdse68.Crop.monitoring.system.entity.Field;
+import lk.ijse.gdse68.Crop.monitoring.system.entity.Staff;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
+import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.util.AppUtil;
 import lk.ijse.gdse68.Crop.monitoring.system.util.Mapping;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +29,9 @@ public class EquipmentBoImpl implements EquipmentBo{
 
     private final EquipmentDao equipmentDao;
     private final Mapping mapping;
+    private final StaffDao staffDao;
+    private  final FieldDao fieldDao;
+
 
     @Override
     public void saveEquipment(EquipmentDto equipmentDto) {
@@ -46,5 +54,55 @@ public class EquipmentBoImpl implements EquipmentBo{
     @Override
     public List<EquipmentDto> getAllEquipment() {
         return mapping.convertEquipmentListToEquipmentDtoList(equipmentDao.findAll());
+    }
+
+    @Override
+    public void deleteEquipment(String equipmentCode) {
+        Optional<Equipment> equipment=equipmentDao.findById(equipmentCode);
+        if (equipment.isPresent()){
+            equipmentDao.deleteById(equipmentCode);
+        }else {
+            throw new NotFoundException("Equipment not found");
+        }
+    }
+
+    @Override
+    public void updateEquipment(EquipmentDto equipmentDto, String staffId, String fieldCode, String equipmentCode) {
+        Equipment equipment=equipmentDao.findById(equipmentCode).orElse(null);
+        if(equipment != null){
+             equipment=mapping.convertEquipmentDtoToEquipment(equipmentDto);
+                equipment.setEquipmentId(equipmentCode);
+                if (staffId.equals("N/A")) {
+                    equipment.setStaff(null);
+                }else {
+                    Optional<Staff> optional=staffDao.findById(staffId);
+                    if (optional.isPresent()) {
+                       Staff staff=optional.get();
+                       equipment.setStaff(staff);
+                    }else {
+                        throw new NotFoundException("Staff not found");
+                    }
+                }
+                if (fieldCode.equals("N/A")) {
+                    equipment.setField(null);
+                }else {
+                    Optional<Field> optional=fieldDao.findById(fieldCode);
+                    if (optional.isPresent()) {
+                        Field field=optional.get();
+                        equipment.setField(field);
+                    }else {
+                        throw new NotFoundException("Field not found");
+                    }
+                }
+        }
+        if (equipment != null) {
+            Equipment save = equipmentDao.save(equipment);
+            if (save == null) {
+                throw new DataPersistFailException("Equipment update failed");
+            }
+            }else {
+                throw new NotFoundException("Equipment not found");
+            }
+
     }
 }

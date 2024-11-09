@@ -52,5 +52,32 @@ public class EquipmentController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @DeleteMapping("/{equipmentCode}")
+    public ResponseEntity<Void> deleteEquipment(@PathVariable String equipmentCode){
+        try {
+            equipmentBo.deleteEquipment(equipmentCode);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (DataPersistFailException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PatchMapping(value = "/{equipmentCode}",params = {"staffId","fieldCode"})
+    public ResponseEntity<?> updateEquipment(
+            @PathVariable("equipmentCode") String equipmentCode,
+            @RequestBody EquipmentDto equipmentDto,
+            @RequestParam("staffId") String staffId,
+            @RequestParam("fieldCode") String fieldCode){
+        try {
+            equipmentBo.updateEquipment(equipmentDto,staffId,fieldCode,equipmentCode);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (DataPersistFailException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
