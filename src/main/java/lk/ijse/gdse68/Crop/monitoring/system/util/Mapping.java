@@ -74,4 +74,8 @@ public class Mapping {
     public EquipmentDto convertEquipmentToEquipmentDto(Equipment equipment) {
         return modelMapper.map(equipment, EquipmentDto.class);
     }
+
+    public List<EquipmentDto> convertEquipmentListToEquipmentDtoList(List<Equipment> all) {
+        return modelMapper.map(all, List.class);
+    }
 }

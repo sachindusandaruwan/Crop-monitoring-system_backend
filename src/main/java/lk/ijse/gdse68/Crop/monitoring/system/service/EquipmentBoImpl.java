@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.yaml.snakeyaml.nodes.NodeId.mapping;
@@ -40,5 +41,10 @@ public class EquipmentBoImpl implements EquipmentBo{
             return mapping.convertEquipmentToEquipmentDto(equipment.get());
         }
         return new EquipmentErrorResponse(404,"Equipment not found");
+    }
+
+    @Override
+    public List<EquipmentDto> getAllEquipment() {
+        return mapping.convertEquipmentListToEquipmentDtoList(equipmentDao.findAll());
     }
 }

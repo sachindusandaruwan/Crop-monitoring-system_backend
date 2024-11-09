@@ -1,10 +1,12 @@
 package lk.ijse.gdse68.Crop.monitoring.system.controller;
 
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.EquipmentResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.EquipmentDto;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
 import lk.ijse.gdse68.Crop.monitoring.system.service.EquipmentBo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +32,7 @@ public class EquipmentController {
     }
 
     @GetMapping("/{equipmentCode}")
-    public ResponseEntity<?> updateEquipment(@PathVariable String equipmentCode) {
+    public ResponseEntity<EquipmentResponse> getEquipment(@PathVariable String equipmentCode) {
         try {
            return new ResponseEntity<>(equipmentBo.getEquipment(equipmentCode),HttpStatus.OK);
         } catch (DataPersistFailException e) {
@@ -39,4 +41,16 @@ public class EquipmentController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping(value = "allequipment", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllEquipment(){
+        try {
+            return new ResponseEntity<>(equipmentBo.getAllEquipment(),HttpStatus.OK);
+        } catch (DataPersistFailException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
