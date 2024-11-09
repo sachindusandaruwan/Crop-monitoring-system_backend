@@ -1,9 +1,6 @@
 package lk.ijse.gdse68.Crop.monitoring.system.util;
 
-import lk.ijse.gdse68.Crop.monitoring.system.customObj.FieldResponse;
-import lk.ijse.gdse68.Crop.monitoring.system.customObj.StaffResponse;
-import lk.ijse.gdse68.Crop.monitoring.system.customObj.UserResponse;
-import lk.ijse.gdse68.Crop.monitoring.system.customObj.VehicleResponse;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.*;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.*;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.*;
 import org.modelmapper.ModelMapper;
@@ -72,5 +69,9 @@ public class Mapping {
 
     public Equipment convertEquipmentDtoToEquipment(EquipmentDto equipmentDto) {
         return modelMapper.map(equipmentDto, Equipment.class);
+    }
+
+    public EquipmentDto convertEquipmentToEquipmentDto(Equipment equipment) {
+        return modelMapper.map(equipment, EquipmentDto.class);
     }
 }
