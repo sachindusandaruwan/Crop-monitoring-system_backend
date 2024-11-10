@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/crop")
 @RequiredArgsConstructor
@@ -72,4 +74,37 @@ public class CropController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping(value = "allcrop", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CropDto> getAllCrop(){
+        return cropBo.getAllCrop();
+    }
+
+    @PatchMapping("/{cropCode}")
+    public ResponseEntity<?> updateCrop(
+            @PathVariable("cropCode") String cropCode,
+            @RequestParam("cropName") String cropName,
+            @RequestParam("cropType") String cropCategory,
+            @RequestParam("cropSeason") String cropSeason,
+            @RequestParam("cropScientificName") String cropScientificName,
+            @RequestParam("cropImage") MultipartFile cropImage,
+            @RequestParam("fieldCode") String fieldCode
+    ){
+        CropDto cropDto = new CropDto();
+        cropDto.setCropCommonName(cropName);
+        cropDto.setCategory(cropCategory);
+        cropDto.setCropSeason(cropSeason);
+        cropDto.setCropScientificName(cropScientificName);
+        cropDto.setCropImage(AppUtil.toBase64(cropImage));
+
+        try{
+            cropBo.updateCrop(cropDto,fieldCode,cropCode);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (NotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

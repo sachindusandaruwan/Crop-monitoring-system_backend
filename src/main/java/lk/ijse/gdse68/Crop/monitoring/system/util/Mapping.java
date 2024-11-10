@@ -86,4 +86,9 @@ public class Mapping {
     public CropDto convertCropToCropDto(Crop crop) {
         return modelMapper.map(crop, CropDto.class);
     }
+
+
+    public List<CropDto> convertCropListToCropDtoList(List<Crop> all) {
+        return modelMapper.map(all, List.class);
+    }
 }

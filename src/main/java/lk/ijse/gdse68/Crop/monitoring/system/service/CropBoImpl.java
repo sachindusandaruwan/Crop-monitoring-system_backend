@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -54,6 +55,30 @@ public class CropBoImpl implements CropBo{
         Optional<Crop> ByCropCode=cropDao.findById(cropCode);
         if (ByCropCode.isPresent()){
             cropDao.deleteById(cropCode);
+        }else {
+            throw new NotFoundException("Crop not found");
+        }
+    }
+
+    @Override
+    public List<CropDto> getAllCrop() {
+        return mapping.convertCropListToCropDtoList(cropDao.findAll());
+    }
+
+    @Override
+    public void updateCrop(CropDto cropDto, String fieldCode, String cropCode) {
+        Optional<Crop> byCropCode=cropDao.findById(cropCode);
+        if(byCropCode.isPresent()){
+            Field field=fieldDao.findById(fieldCode).orElseThrow(
+                    ()->new NotFoundException("Field not found")
+            );
+            byCropCode.get().setField(field);
+            byCropCode.get().setCropCommonName(cropDto.getCropCommonName());
+            byCropCode.get().setCategory(cropDto.getCategory());
+            byCropCode.get().setCropSeason(cropDto.getCropSeason());
+            byCropCode.get().setCropScientificName(cropDto.getCropScientificName());
+            byCropCode.get().setCropImage(cropDto.getCropImage());
+
         }else {
             throw new NotFoundException("Crop not found");
         }

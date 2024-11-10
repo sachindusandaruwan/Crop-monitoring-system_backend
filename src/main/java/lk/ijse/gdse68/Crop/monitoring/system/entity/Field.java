@@ -1,5 +1,6 @@
 package lk.ijse.gdse68.Crop.monitoring.system.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,9 +29,11 @@ public class Field {
     @Column(name = "image_2", columnDefinition = "LONGTEXT")
     private String image2;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "field", cascade = CascadeType.ALL)
     private List<Crop> crop;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "field", cascade = CascadeType.ALL)
     private List<Equipment> equipment;
 
@@ -42,6 +45,7 @@ public class Field {
     )
     private List<Staff> staff;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "field")
     private List<MonitoringLog> monitoringLogs;
 }
