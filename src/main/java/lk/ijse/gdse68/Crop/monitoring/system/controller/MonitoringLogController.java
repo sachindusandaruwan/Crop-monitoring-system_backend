@@ -9,6 +9,7 @@ import lk.ijse.gdse68.Crop.monitoring.system.util.AppUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,6 +57,11 @@ public class MonitoringLogController {
         }catch (NotFoundException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping(value = "allmonitorinlog", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getAllMonitoringLogs(){
+        return new ResponseEntity<>(monitoringLogBo.getAllMonitoringLogs(),HttpStatus.OK);
     }
 
 }

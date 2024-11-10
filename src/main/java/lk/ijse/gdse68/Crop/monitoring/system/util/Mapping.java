@@ -101,4 +101,8 @@ public class Mapping {
     public MonitoringLogDto convertCropDetailsToCropDetailsDTO(MonitoringLog monitoringLog) {
         return modelMapper.map(monitoringLog, MonitoringLogDto.class);
     }
+
+    public List<MonitoringLogDto> convertMonitoringLogListToMonitoringLogDtoList(List<MonitoringLog> allMonitoringLogs) {
+    return modelMapper.map(allMonitoringLogs, List.class);
+    }
 }

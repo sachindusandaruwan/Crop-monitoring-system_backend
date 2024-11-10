@@ -95,5 +95,11 @@ public class MonitoringLogBoImpl implements MonitoringLogBo {
 
     }
 
+    @Override
+    public List<MonitoringLogDto> getAllMonitoringLogs() {
+        List<MonitoringLog> allMonitoringLogs=monitoringLogDao.findAll();
+        return mapping.convertMonitoringLogListToMonitoringLogDtoList(allMonitoringLogs);
+    }
+
 
 }
