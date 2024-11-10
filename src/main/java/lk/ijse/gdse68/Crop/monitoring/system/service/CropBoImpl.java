@@ -2,6 +2,8 @@ package lk.ijse.gdse68.Crop.monitoring.system.service;
 
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.CropDao;
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.FieldDao;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.CropErrorResponse;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.CropResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.CropDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Crop;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Field;
@@ -11,6 +13,8 @@ import lk.ijse.gdse68.Crop.monitoring.system.util.Mapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -33,4 +37,17 @@ public class CropBoImpl implements CropBo{
             throw new NotFoundException("Crop not saved");
         }
     }
+
+    @Override
+    public CropResponse findCrop(String cropCode) {
+        Optional<Crop> ByCropCode=cropDao.findById(cropCode);
+        if (ByCropCode.isPresent()){
+            CropDto cropDto=mapping.convertCropToCropDto(ByCropCode.get());
+            return cropDto;
+        }else {
+            return new CropErrorResponse(0,"Crop not found");
+        }
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package lk.ijse.gdse68.Crop.monitoring.system.controller;
 
+import lk.ijse.gdse68.Crop.monitoring.system.Repository.CropDao;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.CropDto;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class CropController {
     private final CropBo cropBo;
+    private final CropDao cropDao;
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     private ResponseEntity<?> saveCrop(
@@ -42,6 +44,18 @@ public class CropController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (DataPersistFailException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{cropCode}")
+    public ResponseEntity<?> findCrop(@PathVariable String cropCode){
+        try{
+            return new ResponseEntity<>(cropBo.findCrop(cropCode), HttpStatus.OK);
+
+        }catch (NotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
