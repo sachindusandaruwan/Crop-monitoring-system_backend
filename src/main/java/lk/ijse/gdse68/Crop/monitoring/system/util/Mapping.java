@@ -95,4 +95,10 @@ public class Mapping {
     public MonitoringLog convertMonitoringLogDtoToMonitoringLog(MonitoringLogDto monitoringLogDto) {
         return modelMapper.map(monitoringLogDto, MonitoringLog.class);
     }
+
+
+
+    public MonitoringLogDto convertCropDetailsToCropDetailsDTO(MonitoringLog monitoringLog) {
+        return modelMapper.map(monitoringLog, MonitoringLogDto.class);
+    }
 }

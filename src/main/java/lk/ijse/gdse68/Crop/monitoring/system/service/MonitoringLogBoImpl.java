@@ -4,6 +4,8 @@ import lk.ijse.gdse68.Crop.monitoring.system.Repository.CropDao;
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.FieldDao;
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.MonitoringLogDao;
 import lk.ijse.gdse68.Crop.monitoring.system.Repository.StaffDao;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.MonitorinLogErrorResponse;
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.MonitoringLogResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.MonitoringLogDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Crop;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Field;
@@ -17,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -57,4 +60,40 @@ public class MonitoringLogBoImpl implements MonitoringLogBo {
             throw new RuntimeException("Failed to save the monitoring log");
         }
     }
+
+    @Override
+    public MonitoringLogResponse getMonitorimgLogCodeByLogCode(String logCode) {
+        Optional<MonitoringLog> monitoringLogCode=monitoringLogDao.findById(logCode);
+        if (monitoringLogCode.isPresent()){
+            MonitoringLogDto monitoringLogDto = mapping.convertCropDetailsToCropDetailsDTO(monitoringLogCode.get());
+            if (monitoringLogCode.get().getField() != null){
+                List<String> fieldCodes = new ArrayList<>();
+                monitoringLogCode.get().getField().forEach(
+                        field -> fieldCodes.add(field.getFieldCode())
+                );
+                monitoringLogDto.setFieldCodes(fieldCodes);
+            }
+            if (monitoringLogCode.get().getCrop() != null){
+                List<String> cropCodes = new ArrayList<>();
+                monitoringLogCode.get().getCrop().forEach(
+                        crop -> cropCodes.add(crop.getCropCode())
+                );
+                monitoringLogDto.setCropCodes(cropCodes);
+            }
+            if (monitoringLogCode.get().getStaff() != null){
+                List<String> staffIds = new ArrayList<>();
+                monitoringLogCode.get().getStaff().forEach(
+                        staff -> staffIds.add(staff.getId())
+                );
+                monitoringLogDto.setStaffIds(staffIds);
+                monitoringLogDto.setObservation(monitoringLogCode.get().getLogDetails());
+            }
+            return monitoringLogDto;
+        }else {
+            return new MonitorinLogErrorResponse(0,"Crop details not found");
+        }
+
+    }
+
+
 }

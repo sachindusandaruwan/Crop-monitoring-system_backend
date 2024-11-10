@@ -1,5 +1,6 @@
 package lk.ijse.gdse68.Crop.monitoring.system.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class MonitoringLog {
     private String observedImage;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name="monitoring_log_field",
             joinColumns = @JoinColumn(name = "field_code"),
@@ -32,6 +34,7 @@ public class MonitoringLog {
     private List<Field> field;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name="monitoring_log_crop",
             joinColumns = @JoinColumn(name="log_code"),
@@ -40,6 +43,7 @@ public class MonitoringLog {
     private List<Crop> crop;
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name="monitoring_log_staff",
             joinColumns = @JoinColumn(name="log_code"),

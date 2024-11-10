@@ -1,17 +1,16 @@
 package lk.ijse.gdse68.Crop.monitoring.system.controller;
 
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.MonitoringLogResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.MonitoringLogDto;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
+import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.service.MonitoringLogBo;
 import lk.ijse.gdse68.Crop.monitoring.system.util.AppUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
@@ -48,6 +47,15 @@ public class MonitoringLogController {
 
         }
 
+    }
+    @GetMapping("/{logCode}")
+    public ResponseEntity<?> getMonitoringlogByLogCode(@PathVariable String logCode){
+        try{
+            MonitoringLogResponse getMonitoringLogbyLogCode=monitoringLogBo.getMonitorimgLogCodeByLogCode(logCode);
+            return new ResponseEntity<>(getMonitoringLogbyLogCode,HttpStatus.OK);
+        }catch (NotFoundException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
