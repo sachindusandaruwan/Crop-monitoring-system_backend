@@ -49,5 +49,15 @@ public class CropBoImpl implements CropBo{
         }
     }
 
+    @Override
+    public void deleteCrop(String cropCode) {
+        Optional<Crop> ByCropCode=cropDao.findById(cropCode);
+        if (ByCropCode.isPresent()){
+            cropDao.deleteById(cropCode);
+        }else {
+            throw new NotFoundException("Crop not found");
+        }
+    }
+
 
 }

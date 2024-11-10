@@ -7,4 +7,6 @@ public interface CropBo {
     void saveCrop(CropDto cropDto, String fieldCode);
 
     CropResponse findCrop(String cropCode);
+
+    void deleteCrop(String cropCode);
 }

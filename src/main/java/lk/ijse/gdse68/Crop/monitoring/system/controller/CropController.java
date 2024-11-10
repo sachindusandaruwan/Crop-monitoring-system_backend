@@ -60,4 +60,16 @@ public class CropController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/{cropCode}")
+    public ResponseEntity<?> deleterop(@PathVariable String cropCode){
+        try{
+            cropBo.deleteCrop(cropCode);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (NotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
