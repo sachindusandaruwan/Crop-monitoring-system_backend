@@ -1,5 +1,6 @@
 package lk.ijse.gdse68.Crop.monitoring.system.dto;
 
+import lk.ijse.gdse68.Crop.monitoring.system.customObj.MonitoringLogResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class MonitoringLogDto implements SuperDto{
+public class MonitoringLogDto implements MonitoringLogResponse,SuperDto{
     private String logCode;
     private Date logDate;
     private String observation;

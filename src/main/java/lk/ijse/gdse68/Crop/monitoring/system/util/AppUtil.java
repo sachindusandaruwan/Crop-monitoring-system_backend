@@ -38,4 +38,8 @@ public class AppUtil {
     public static String generateCropCode() {
         return "C-" + UUID.randomUUID();
     }
+
+    public static String generateMonitoringLogCode() {
+        return "ML-" + UUID.randomUUID();
+    }
 }
