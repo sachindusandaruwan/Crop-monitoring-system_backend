@@ -11,12 +11,14 @@ import lk.ijse.gdse68.Crop.monitoring.system.entity.Crop;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Field;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.MonitoringLog;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.Staff;
+import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.util.AppUtil;
 import lk.ijse.gdse68.Crop.monitoring.system.util.Mapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.NotActiveException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -110,6 +112,17 @@ public class MonitoringLogBoImpl implements MonitoringLogBo {
             throw new RuntimeException("Monitoring log not found");
         }
 
+    }
+
+    @Override
+    public void updateMonitoringLog(MonitoringLogDto monitoringLogDto, String logCode) {
+        Optional<MonitoringLog> monitoringLog=monitoringLogDao.findById(logCode);
+        if(monitoringLog.isPresent()){
+            monitoringLog.get().setLogDetails(monitoringLogDto.getObservation());
+            monitoringLog.get().setObservedImage(monitoringLogDto.getObservedImage());
+        }else {
+            throw new NotFoundException("Monitoring log not found");
+        }
     }
 
 

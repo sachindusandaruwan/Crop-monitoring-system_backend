@@ -76,4 +76,23 @@ public class MonitoringLogController {
         }
     }
 
+    @PatchMapping(value = "/{logCode}")
+    public ResponseEntity<?> updateMonitoringLog(
+            @RequestPart(value = "observation") String observation,
+            @RequestPart(value = "observedImage") MultipartFile observedImage,
+            @PathVariable(value = "logCode") String logCode
+    ){
+        try{
+            String base64Image=AppUtil.toBase64(observedImage);
+            MonitoringLogDto monitoringLogDto = new MonitoringLogDto();
+            monitoringLogDto.setObservation(observation);
+            monitoringLogDto.setObservedImage(base64Image);
+
+            monitoringLogBo.updateMonitoringLog(monitoringLogDto,logCode);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (NotFoundException e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

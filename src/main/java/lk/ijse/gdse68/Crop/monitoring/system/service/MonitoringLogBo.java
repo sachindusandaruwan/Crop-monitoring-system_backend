@@ -14,4 +14,6 @@ public interface MonitoringLogBo {
     List<MonitoringLogDto> getAllMonitoringLogs();
 
     void deleteMonitoringLog(String logCode);
+
+    void updateMonitoringLog(MonitoringLogDto monitoringLogDto, String logCode);
 }
