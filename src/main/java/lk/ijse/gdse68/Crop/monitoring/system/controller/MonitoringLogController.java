@@ -64,4 +64,16 @@ public class MonitoringLogController {
         return new ResponseEntity<>(monitoringLogBo.getAllMonitoringLogs(),HttpStatus.OK);
     }
 
+    @DeleteMapping("/{logCode}")
+    public ResponseEntity<Void> deleteMonitoringLog(@PathVariable String logCode){
+        try {
+            monitoringLogBo.deleteMonitoringLog(logCode);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (DataPersistFailException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

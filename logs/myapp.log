@@ -123,3 +123,7 @@
 2024-11-10 16:01:50 - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-11-10 16:01:50 - Initializing Servlet 'dispatcherServlet'
 2024-11-10 16:01:50 - Completed initialization in 3 ms
+2024-11-10 17:00:18 - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=35m43s83ms759µs600ns).
+2024-11-10 17:11:34 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-10 17:11:34 - HikariPool-1 - Shutdown initiated...
+2024-11-10 17:11:34 - HikariPool-1 - Shutdown completed.

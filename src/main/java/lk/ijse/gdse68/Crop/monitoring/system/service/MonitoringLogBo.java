@@ -12,4 +12,6 @@ public interface MonitoringLogBo {
     MonitoringLogResponse getMonitorimgLogCodeByLogCode(String logCode);
 
     List<MonitoringLogDto> getAllMonitoringLogs();
+
+    void deleteMonitoringLog(String logCode);
 }

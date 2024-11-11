@@ -101,5 +101,16 @@ public class MonitoringLogBoImpl implements MonitoringLogBo {
         return mapping.convertMonitoringLogListToMonitoringLogDtoList(allMonitoringLogs);
     }
 
+    @Override
+    public void deleteMonitoringLog(String logCode) {
+        Optional<MonitoringLog> monitoringLog=monitoringLogDao.findById(logCode);
+        if (monitoringLog.isPresent()){
+            monitoringLogDao.delete(monitoringLog.get());
+        }else {
+            throw new RuntimeException("Monitoring log not found");
+        }
+
+    }
+
 
 }
