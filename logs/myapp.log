@@ -33,3 +33,32 @@
 2024-11-11 23:53:31 - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-11-11 23:53:31 - HikariPool-1 - Shutdown initiated...
 2024-11-11 23:53:31 - HikariPool-1 - Shutdown completed.
+2024-11-11 23:53:39 - HV000001: Hibernate Validator 8.0.1.Final
+2024-11-11 23:53:39 - Starting CropMonitoringSystemApplication using Java 17.0.10 with PID 9860 (D:\2nd-Sem-Final\Crop monitoring system\Crop-monitoring-system\build\classes\java\main started by sadar in D:\2nd-Sem-Final\Crop monitoring system\Crop-monitoring-system)
+2024-11-11 23:53:39 - The following 1 profile is active: "dev"
+2024-11-11 23:53:40 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-11 23:53:41 - Finished Spring Data repository scanning in 163 ms. Found 7 JPA repository interfaces.
+2024-11-11 23:53:41 - Tomcat initialized with port 5055 (http)
+2024-11-11 23:53:41 - Initializing ProtocolHandler ["http-nio-5055"]
+2024-11-11 23:53:41 - Starting service [Tomcat]
+2024-11-11 23:53:41 - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-11 23:53:42 - Initializing Spring embedded WebApplicationContext
+2024-11-11 23:53:42 - Root WebApplicationContext: initialization completed in 2536 ms
+2024-11-11 23:53:42 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-11 23:53:42 - HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-11 23:53:42 - HHH000026: Second-level cache disabled
+2024-11-11 23:53:42 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-11 23:53:42 - HikariPool-1 - Starting...
+2024-11-11 23:53:43 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5996d6f2
+2024-11-11 23:53:43 - HikariPool-1 - Start completed.
+2024-11-11 23:53:43 - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-11 23:53:43 - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-11-11 23:53:45 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-11 23:53:46 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-11 23:53:47 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-11 23:53:48 - Starting ProtocolHandler ["http-nio-5055"]
+2024-11-11 23:53:48 - Tomcat started on port 5055 (http) with context path '/crop-monitoring-system'
+2024-11-11 23:53:48 - Started CropMonitoringSystemApplication in 9.744 seconds (process running for 11.123)
+2024-11-11 23:53:52 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-11 23:53:52 - Initializing Servlet 'dispatcherServlet'
+2024-11-11 23:53:52 - Completed initialization in 3 ms
