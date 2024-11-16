@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lk.ijse.gdse68.Crop.monitoring.system.customObj.UserResponse;
 import lk.ijse.gdse68.Crop.monitoring.system.dto.UserDto;
 import lk.ijse.gdse68.Crop.monitoring.system.entity.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserBo {
     void saveUser(UserDto userDto);
@@ -11,4 +12,6 @@ public interface UserBo {
     UserResponse getUserByEmail(String email);
 
     void updateUser(@Valid UserDto userDto);
+
+    UserDetailsService userDetailsService();
 }

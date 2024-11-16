@@ -62,3 +62,142 @@
 2024-11-11 23:53:52 - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-11-11 23:53:52 - Initializing Servlet 'dispatcherServlet'
 2024-11-11 23:53:52 - Completed initialization in 3 ms
+2024-11-12 00:45:05 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-12 00:45:05 - HikariPool-1 - Shutdown initiated...
+2024-11-12 00:45:05 - HikariPool-1 - Shutdown completed.
+2024-11-16 13:27:41 - HV000001: Hibernate Validator 8.0.1.Final
+2024-11-16 13:27:41 - Starting CropMonitoringSystemApplication using Java 17.0.10 with PID 9628 (D:\2nd-Sem-Final\Crop monitoring system\Crop-monitoring-system\build\classes\java\main started by sadar in D:\2nd-Sem-Final\Crop monitoring system\Crop-monitoring-system)
+2024-11-16 13:27:41 - The following 1 profile is active: "dev"
+2024-11-16 13:27:43 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16 13:27:43 - Finished Spring Data repository scanning in 167 ms. Found 7 JPA repository interfaces.
+2024-11-16 13:27:44 - Tomcat initialized with port 5055 (http)
+2024-11-16 13:27:44 - Initializing ProtocolHandler ["http-nio-5055"]
+2024-11-16 13:27:44 - Starting service [Tomcat]
+2024-11-16 13:27:44 - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-16 13:27:44 - Initializing Spring embedded WebApplicationContext
+2024-11-16 13:27:44 - Root WebApplicationContext: initialization completed in 3269 ms
+2024-11-16 13:27:44 - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'JWTConfig' defined in file [D:\2nd-Sem-Final\Crop monitoring system\Crop-monitoring-system\build\classes\java\main\lk\ijse\gdse68\Crop\monitoring\system\config\JWTConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'JWTBoImpl': Injection of autowired dependencies failed
+2024-11-16 13:27:44 - Stopping service [Tomcat]
+2024-11-16 13:27:44 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2024-11-16 13:27:44 - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-16 13:27:44 - Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:619)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at lk.ijse.gdse68.Crop.monitoring.system.CropMonitoringSystemApplication.main(CropMonitoringSystemApplication.java:13)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:147)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:516)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:222)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162)
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'JWTConfig' defined in file [D:\2nd-Sem-Final\Crop monitoring system\Crop-monitoring-system\build\classes\java\main\lk\ijse\gdse68\Crop\monitoring\system\config\JWTConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'JWTBoImpl': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1375)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1212)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:174)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:169)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:154)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:266)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:240)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4412)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:772)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:203)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:415)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:870)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:437)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128)
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'JWTBoImpl': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:515)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1439)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1443)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	... 54 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'token.key' in value "${token.key}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:200)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:964)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1374)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1353)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+	... 66 common frames omitted
+2024-11-16 13:29:25 - HV000001: Hibernate Validator 8.0.1.Final
+2024-11-16 13:29:26 - Starting CropMonitoringSystemApplication using Java 17.0.10 with PID 12800 (D:\2nd-Sem-Final\Crop monitoring system\Crop-monitoring-system\build\classes\java\main started by sadar in D:\2nd-Sem-Final\Crop monitoring system\Crop-monitoring-system)
+2024-11-16 13:29:26 - The following 1 profile is active: "dev"
+2024-11-16 13:29:27 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-16 13:29:27 - Finished Spring Data repository scanning in 164 ms. Found 7 JPA repository interfaces.
+2024-11-16 13:29:28 - Tomcat initialized with port 5055 (http)
+2024-11-16 13:29:28 - Initializing ProtocolHandler ["http-nio-5055"]
+2024-11-16 13:29:28 - Starting service [Tomcat]
+2024-11-16 13:29:28 - Starting Servlet engine: [Apache Tomcat/10.1.31]
+2024-11-16 13:29:28 - Initializing Spring embedded WebApplicationContext
+2024-11-16 13:29:28 - Root WebApplicationContext: initialization completed in 2625 ms
+2024-11-16 13:29:29 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-16 13:29:29 - HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-16 13:29:29 - HHH000026: Second-level cache disabled
+2024-11-16 13:29:29 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-16 13:29:29 - HikariPool-1 - Starting...
+2024-11-16 13:29:30 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@64ed18ec
+2024-11-16 13:29:30 - HikariPool-1 - Start completed.
+2024-11-16 13:29:30 - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-16 13:29:30 - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-11-16 13:29:33 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-16 13:29:34 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-16 13:29:34 - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-16 13:29:35 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-16 13:29:36 - Starting ProtocolHandler ["http-nio-5055"]
+2024-11-16 13:29:36 - Tomcat started on port 5055 (http) with context path '/crop-monitoring-system'
+2024-11-16 13:29:36 - Started CropMonitoringSystemApplication in 11.538 seconds (process running for 12.819)
