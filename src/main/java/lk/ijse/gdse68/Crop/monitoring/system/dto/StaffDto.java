@@ -32,11 +32,11 @@ public class StaffDto implements SuperDto, StaffResponse {
     private String gender;
 
     @NotBlank
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private String joinedDate;
 
     @NotBlank
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "MM-dd-yyyy")
     private String DOB;
 
     @NotBlank
@@ -52,7 +52,7 @@ public class StaffDto implements SuperDto, StaffResponse {
     private String addressLine5;
 
     @NotBlank
-    @Pattern(regexp = "^[0-9]{10}$")
+
     private String contactNo;
 
     @NotBlank
