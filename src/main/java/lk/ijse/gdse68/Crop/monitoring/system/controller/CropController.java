@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/crop")
 @RequiredArgsConstructor
+@CrossOrigin
 public class CropController {
     private final CropBo cropBo;
     private final CropDao cropDao;

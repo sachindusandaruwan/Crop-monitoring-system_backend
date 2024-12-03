@@ -21,6 +21,7 @@ import java.util.List;
 @RequestMapping("/api/v1/monitoringLog")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin
 public class MonitoringLogController {
     private final MonitoringLogBo monitoringLogBo;
 

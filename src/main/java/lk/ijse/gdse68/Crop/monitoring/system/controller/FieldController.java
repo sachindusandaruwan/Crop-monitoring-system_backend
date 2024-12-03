@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 @RestController
 @RequestMapping("/api/v1/field")
 @RequiredArgsConstructor
+@CrossOrigin
 public class FieldController {
 
     private final FieldBo fieldBo;
