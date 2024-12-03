@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/equipment")
 @RequiredArgsConstructor
+@CrossOrigin
 public class EquipmentController {
     private final EquipmentBo equipmentBo;
 
