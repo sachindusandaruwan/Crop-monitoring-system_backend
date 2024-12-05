@@ -11,6 +11,7 @@ import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.util.Mapping;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +60,12 @@ public class UserBoImpl implements UserBo {
         }else {
             throw new NotFoundException("User not exists");
         }
+    }
+    @Override
+    public UserDetailsService userDetailsService() {
+        return email ->
+                userDao.findByEmail(email)
+                        .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
 }

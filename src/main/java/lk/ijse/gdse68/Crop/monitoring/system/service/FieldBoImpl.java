@@ -38,16 +38,48 @@ public class FieldBoImpl implements FieldBo {
         }
     }
 
+//    @Override
+//    public FieldResponse getField(String fieldCode) {
+//        Optional<Field> field = fieldDao.findById(fieldCode);
+//        if (field.isPresent()) {
+//            return mapping.convertFieldToFieldDto(field.get());
+//        }else {
+//            return new FieldErrorResponse("Field not found", 404);
+//        }
+//
+//    }
+
     @Override
+
     public FieldResponse getField(String fieldCode) {
+
         Optional<Field> field = fieldDao.findById(fieldCode);
+
         if (field.isPresent()) {
-            return mapping.convertFieldToFieldDto(field.get());
+
+            FieldDto fieldDTO = mapping.convertFieldToFieldDto(field.get());
+
+            List<String> staffIds = new ArrayList<>();
+
+            field.get().getStaff().forEach(
+
+                    staff -> staffIds.add(staff.getId())
+
+            );
+
+            fieldDTO.setStaffIds(staffIds);
+
+            return fieldDTO;
+
         }else {
+
             return new FieldErrorResponse("Field not found", 404);
+
         }
 
     }
+
+
 
     @Override
     public List<FieldDto> getAllField() {

@@ -17,6 +17,7 @@ import static org.yaml.snakeyaml.nodes.NodeId.mapping;
 @RestController
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
+@CrossOrigin
 public class UserController {
 
     private final UserBo userBo;

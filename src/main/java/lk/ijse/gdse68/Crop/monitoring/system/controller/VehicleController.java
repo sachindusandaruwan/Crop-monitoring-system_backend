@@ -8,6 +8,9 @@ import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.service.VehicleBo;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +21,15 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @CrossOrigin
 public class VehicleController {
-
+    @Autowired
     private final VehicleBo vehicleBo;
+
+    private static  final Logger logger = LoggerFactory.getLogger(EquipmentController.class);
+
 
     @PostMapping
     public ResponseEntity<?> saveVehicle(@Valid @RequestBody VehicleDto vehicleDto) {
+        logger.info("vehicle save ekata enawa");
         try {
             vehicleBo.saveVehicle(vehicleDto);
 
@@ -77,6 +84,7 @@ public class VehicleController {
 
     @PatchMapping(value ="/{vehicleCode}",params = "staffId",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateVehicle(@Valid @RequestBody VehicleDto vehicleDto, @RequestParam("staffId") String staffId , @PathVariable("vehicleCode") String vehicleCode){
+        logger.info("mona huuuu"+staffId+"vehicle dto"+vehicleDto);
         try{
             vehicleBo.updateVehicle(vehicleDto,staffId,vehicleCode);
             return new ResponseEntity<>(HttpStatus.OK);
