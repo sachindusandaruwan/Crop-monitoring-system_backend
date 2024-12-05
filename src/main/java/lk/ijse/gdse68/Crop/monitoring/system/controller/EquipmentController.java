@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/equipment")
 @RequiredArgsConstructor
 @CrossOrigin("*")
+@CrossOrigin
 public class EquipmentController {
     private static  final Logger logger = LoggerFactory.getLogger(EquipmentController.class);
 
