@@ -5,6 +5,10 @@ import lk.ijse.gdse68.Crop.monitoring.system.dto.EquipmentDto;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
 import lk.ijse.gdse68.Crop.monitoring.system.service.EquipmentBo;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +17,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/equipment")
 @RequiredArgsConstructor
-@CrossOrigin
+@CrossOrigin("*")
 public class EquipmentController {
+    private static  final Logger logger = LoggerFactory.getLogger(EquipmentController.class);
+
+    @Autowired
     private final EquipmentBo equipmentBo;
 
     @PostMapping
@@ -45,7 +52,12 @@ public class EquipmentController {
 
     @GetMapping(value = "allequipment", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllEquipment(){
+        logger.info("awwaa soya adare");
+
         try {
+            logger.info("hiiii hiii");
+//            logger.info("awwaa soya adare"+equipmentBo.getAllEquipment());
+            logger.info("kfjkdd");
             return new ResponseEntity<>(equipmentBo.getAllEquipment(),HttpStatus.OK);
         } catch (DataPersistFailException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

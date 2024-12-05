@@ -8,13 +8,15 @@ import lk.ijse.gdse68.Crop.monitoring.system.service.FieldBo;
 import lk.ijse.gdse68.Crop.monitoring.system.util.AppUtil;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.geo.Point;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.*;
+//import java.awt.*;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -23,7 +25,7 @@ import java.util.logging.Logger;
 @RequiredArgsConstructor
 @CrossOrigin
 public class FieldController {
-
+    @Autowired
     private final FieldBo fieldBo;
 
     private static final Logger logger = Logger.getLogger(FieldController.class.getName());
@@ -31,11 +33,11 @@ public class FieldController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> saveField(
             @RequestParam("fieldName") String fieldName,
-            @RequestParam("fieldLocationX") int fieldLocationX,
+            @RequestParam("fieldLocationX") double fieldLocationX,
             @RequestParam("fieldSize") double fieldSize,
             @RequestParam("image1") MultipartFile image1,
             @RequestParam("image2") MultipartFile image2,
-            @RequestParam("fieldLocationY") int fieldLocationY
+            @RequestParam("fieldLocationY") double fieldLocationY
     ) {
         logger.info("y" + fieldLocationY + "x" + fieldLocationX);
         FieldDto fieldDTO = new FieldDto();
@@ -65,7 +67,9 @@ public class FieldController {
     }
 
     @GetMapping(value = "allfield", produces = MediaType.APPLICATION_JSON_VALUE)
+
     public List<FieldDto> getAllField(){
+        logger.info("Get all fields");
         return fieldBo.getAllField();
     }
 

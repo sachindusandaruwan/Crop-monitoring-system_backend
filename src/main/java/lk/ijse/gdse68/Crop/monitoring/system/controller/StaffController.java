@@ -7,6 +7,7 @@ import lk.ijse.gdse68.Crop.monitoring.system.exception.DataPersistFailException;
 import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.service.StaffBo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin
 public class StaffController {
-
+    @Autowired
     private final StaffBo staffBo;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

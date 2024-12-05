@@ -38,7 +38,9 @@ public class JWTBoImpl implements JWTBo {
     @Override
     public boolean isTokenValid(String token, UserDetails userDetails) {
         var username = extractUsername(token);
+        System.out.println("username = " + username);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+
 
     }
     // actual process

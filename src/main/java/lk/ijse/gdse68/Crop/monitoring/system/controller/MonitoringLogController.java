@@ -8,6 +8,7 @@ import lk.ijse.gdse68.Crop.monitoring.system.service.MonitoringLogBo;
 import lk.ijse.gdse68.Crop.monitoring.system.util.AppUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ import java.util.List;
 @Slf4j
 @CrossOrigin
 public class MonitoringLogController {
+    @Autowired
     private final MonitoringLogBo monitoringLogBo;
 
     @PostMapping

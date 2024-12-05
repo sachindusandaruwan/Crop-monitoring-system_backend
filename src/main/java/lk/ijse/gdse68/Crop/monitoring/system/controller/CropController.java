@@ -7,6 +7,7 @@ import lk.ijse.gdse68.Crop.monitoring.system.exception.NotFoundException;
 import lk.ijse.gdse68.Crop.monitoring.system.service.CropBo;
 import lk.ijse.gdse68.Crop.monitoring.system.util.AppUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin
 public class CropController {
+    @Autowired
     private final CropBo cropBo;
-    private final CropDao cropDao;
+
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     private ResponseEntity<?> saveCrop(
