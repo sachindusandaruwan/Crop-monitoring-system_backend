@@ -93,11 +93,11 @@ public class FieldController {
     public ResponseEntity<?> updateField(
             @PathVariable("fieldCode") String fieldCode,
             @RequestParam("fieldName") String fieldName,
-            @RequestParam("fieldLocationX") int fieldLocationX,
+            @RequestParam("fieldLocationX") double fieldLocationX,
             @RequestParam("fieldSize") double fieldSize,
             @RequestParam("image1") MultipartFile image1,
             @RequestParam("image2") MultipartFile image2,
-            @RequestParam("fieldLocationY") int fieldLocationY,
+            @RequestParam("fieldLocationY") double fieldLocationY,
             @RequestParam("staffIds") List<String> staffIds
     ) {
         FieldDto fieldDTO = new FieldDto();
